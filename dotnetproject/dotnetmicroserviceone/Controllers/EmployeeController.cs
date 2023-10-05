@@ -41,6 +41,10 @@ public class EmployeeController:ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult>DeleteEmployee(int id)
     {
-        var employee=await _context
+        var employee=await _context.Employees.FindAsync(id);
+        if(employee==null)
+        {
+            return NotFound();
+        }
     }
 }

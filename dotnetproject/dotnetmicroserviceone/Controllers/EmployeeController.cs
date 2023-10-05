@@ -36,6 +36,11 @@ public class EmployeeController:ControllerBase
         _context.Employees.Add(employee);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetEmployeeById),new{id=})
+        return CreatedAtAction(nameof(GetEmployeeById),new{id=employee.EmployeeID},employee);
+    }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult>DeleteEmployee(int id)
+    {
+        var employee=await _context
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 [ApiController]
 public class EmployeeController:ControllerBase
 {
-    private readonly EmployeeDbContext_context;
+    private readonly EmployeeDbContext _context;
 
     public EmployeeController(EmployeeDbContext context)
     {
@@ -23,6 +23,19 @@ public class EmployeeController:ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Employee>>GetEmployeeById(int id)
     {
-        var employee=await_context.F
+        var employee=await_context.FindAsync(id);
+        if (employee==null)
+        {
+            return NotFount();
+        }
+        return employee;
+    }
+    [HttpPost]
+    public async Task<ActionResult<Employee>>AddEmployee(Employee employee)
+    {
+        _context.Employees.Add(employee);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetEmployeeById),new{id=})
     }
 }

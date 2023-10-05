@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 
-public class EmployeeDbContext : EmployeeDbContext
+public class EmployeeDbContext : DbContext
 {
     public EmployeeDbContext(DbContextOptions<EmployeeDbContext> options): base(options)
     {
 
     }
-    publicc DbSet<Employee> Employees { get; set;}
+    public DbSet<Employee> Employees { get; set; }
 }
